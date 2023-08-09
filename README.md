@@ -1,5 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8cfa8785-8df8-4aad-ad35-8f1c790b8baf/deploy-status)](https://app.netlify.com/sites/digital-garden-jekyll-template/deploys)
-
 # DWN's DIGITAL
 > A customisation of the digital gardan jekyll template by maximevaillancourt. Includes better code highlighting and line numbers as well as better flow of text elements.
 
