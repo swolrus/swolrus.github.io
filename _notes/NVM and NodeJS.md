@@ -10,6 +10,7 @@ title: NVM and NodeJS
 Yarn replaces NPM by interfacing with NPM. It's an abstraction layer that adds functionality and better dependency management.  In terms of your usage it "replaces" NPM. NPM will still be a dependency of your project, but yarn is not a dependency as it is just managing the correct versions of all the projects packages. As a dev you no longer use NPM you will interact with NPM via yarn.
 
 ### What are these words you're using?
+
 | Term                       | Definition                                                   |
 | -------------------------- | ------------------------------------------------------------ |
 | NodeJS                     | A JavaScript runtime environment that allows for packages to be installed to provide functions to the environment. Think what virtualenv (venv) is for python. Example is installing react and using |
@@ -65,13 +66,13 @@ Simply follow through the installer, the default values are sufficient unless yo
 
 #### 1.3 Linux (ubuntu)
 ##### 1.3.1 Download and run the NVM installer script.
-```bash
+```zsh
 sudo apt install curl 
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 ```
 
 ##### 1.3.2 Load the environment profile which the script will of modified.
-```bash
+```zsh
 source ~/.bashrc
 ```
 

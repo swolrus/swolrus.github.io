@@ -16,6 +16,7 @@ This separation carries over to TypeScript.
 ## Features
 ### Enums
 > TS allows for easier seperation between const values and enums.
+
 ```typescript
 // TypeScript enum declaration
 enum Direction {
@@ -24,7 +25,6 @@ enum Direction {
   Left,
   Right
 }
-
 // JavaScript equivalent, TS will compile an enum into this anyway
 const Direction = {
   Up: 'Up',
