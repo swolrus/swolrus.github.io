@@ -1,5 +1,5 @@
 ---
-title: AI - Adam's Optimiser
+title: Adam's Optimiser
 ---
 
 

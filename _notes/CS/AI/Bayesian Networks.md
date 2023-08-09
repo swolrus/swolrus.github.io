@@ -1,5 +1,5 @@
 ---
-title: AI - Bayesian Networks
+title: Bayesian Networks
 ---
 
 
