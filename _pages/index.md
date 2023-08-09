@@ -37,7 +37,7 @@ DWN
   window.onload = function() {
     for (var i=0 ; i<noteList.children.length ; i++ ) {
       search[i] = String(noteList.children[i].innerText) + String(noteList.children[i].lastElementChild.contentDocument.children[0].children[1].innerText);
-      search[i].remove();
+      noteList.children[i].lastElementChild.remove();
     }
     searchInput.addEventListener("input", startInterval);
     loaded = true;
