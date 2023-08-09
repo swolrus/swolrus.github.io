@@ -2,6 +2,7 @@
 title: TypeScript Tips
 ---
 
+> A collection of typescript tricks, also a super quick definition for y'all.
 > See [this](https://www.youtube.com/watch?v=sRWE5tnaxlI) video on JS Fuck to get it... Get it now?
 
 ## Definitions
