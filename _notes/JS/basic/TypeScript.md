@@ -54,7 +54,7 @@ type Values = (typeof homer)[Keys];
 
 #### Keys of your Type
 ```typescript
-const Homer = {
+type Homer = {
   mistake: "D'oh!",
   iq: 105,
   hair: "Balding",
@@ -66,4 +66,5 @@ type Keys = keyof Homer;
 // type Values = string | number
 type Values = (typeof homer)[Keys];
 ```
+
 
