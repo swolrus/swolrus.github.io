@@ -30,5 +30,3 @@ title: Healthy Pad Thai
 6.  Finally, add noodles, then fresh veggies and the sauce.
 7.  Build your meals.
 
-----
-> Original note: [[_Recipes]]

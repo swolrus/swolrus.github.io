@@ -2,7 +2,7 @@
 title: Bash Commands (Ongoing)
 ---
 
-| [[]]Command | Flag   | Function                              |
+| Command | Flag   | Function                              |
 | ----------- | ------ | ------------------------------------- |
 | pwd         |        | Print working directory               |
 | ls          | -a     | List with flag all (including hidden) |

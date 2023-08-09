@@ -25,6 +25,3 @@ Top with whatever u like! I love natural
 peanut butter, raspberries and maple syrup
 
 So yummy!
-
-----
-> Original note: [[_Recipes]]

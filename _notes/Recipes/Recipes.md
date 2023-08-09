@@ -1,7 +1,8 @@
 ---
-title: _Recipes
+title: Recipes
 ---
 
+Relevant Notes:
 - [[Chicken Naan]]
 - [[Dense AF Protein Pancakes]]
 - [[Healthy Pad Thai]]

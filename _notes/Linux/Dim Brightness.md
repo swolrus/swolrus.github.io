@@ -2,8 +2,6 @@
 title: Setting External Monitor Brightness
 ---
 
-
-
 ## DDC/CI
 [DDC/CI](https://en.wikipedia.org/wiki/Display_Data_Channel#DDC.2FCI "wikipedia:Display Data Channel") (Display Data Channel Command Interface) can be used to communicate with external monitors implementing MCCS (Monitor Control Command Set) over I2C. DDC can control brightness, contrast, inputs, etc on supported monitors. Settings available via the OSD (On-Screen Display) panel can usually also be managed via DDC. The [kernel module](https://wiki.archlinux.org/title/Kernel_module "Kernel module") `i2c-dev` may need to be loaded if the `/dev/i2c-*` devices do not exist.
 

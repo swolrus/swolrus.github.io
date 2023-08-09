@@ -2,8 +2,6 @@
 title: Chicken Naan
 ---
 
-
-
 [Original Recipe](https://www.thecookingguy.com/cookbook/2021/5/10/greek-chicken?rq=greek%20chicken)
 
 A huuuuge family fav that we (and by **_we_** I mean **_me_**) make all the time.
@@ -38,6 +36,4 @@ Naan, for serving [[Naan]]
 6.	Grill on a very hot grill, turning often and brushing with reserved marinade once chicken is grilled on both sides - cook until chicken hits 165 degrees
 7.	Remove, brush again and use
 
-----
-> Original note: [[_Recipes]]
 

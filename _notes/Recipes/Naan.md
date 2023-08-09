@@ -31,6 +31,3 @@ If no self raising flour make by adding for every 1 cup plain flour:
 -   Flatten with a rolling pin into a 6-8 inch circle, and cook in a medium hot, lightly oiled pan a couple minutes a side until bubbly
 -   Remove and brush with garlic butter if using - serve
 
-----
-
-> Original note: [[_Recipes]]

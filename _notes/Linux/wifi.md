@@ -2,8 +2,6 @@
 title: WIFI and Arch Linux
 ---
 
-
-
 > Simple wifi setup and configuration with iwd and systemd-networkd/systemd/resolved
 
 [Simple Wifi Config (IWD/Systemd Networkd)](https://insanity.industries/post/simple-wifi/)
@@ -149,8 +147,6 @@ options iwlmvm power_scheme=1
 options iwldvm force_cam=0
 ```
 
-
-
 ### Other Options
 
 > These were not required in my use case but if finding issues with connectivity are driver level settings that may have an effect
@@ -163,23 +159,25 @@ In some cases your current iwlwifi  driver already performs better when certain 
 *(You can launch a terminal window like this: [\*Click\*](https://easylinuxtipsproject.blogspot.com/p/terminal.html))*
 
  b. [Copy/paste](https://easylinuxtipsproject.blogspot.com/p/copy-paste.html) the following blue command line into the terminal (this is one long line, don't chop it up!):
-
+```bash
 echo "options iwlwifi bt_coex_active=0 swcrypto=1 11n_disable=8" | sudo tee /etc/modprobe.d/iwlwifi-3options.conf
+```
+Press Enter. Type your password when prompted. *In Ubuntu this remains entirely invisible, not even dots will show when you type it, that's normal.* Press Enter again.
 
- Press Enter. Type your password when prompted. *In Ubuntu this remains entirely invisible, not even dots will show when you type it, that's normal.* Press Enter again.
+Hereby you achieve three things:
 
- Hereby you achieve three things:
+With **bt_coex_active=0** you disable the Bluetooth feature of the WiFi chipset, which sometimes interferes;
 
- \- With **bt_coex_active=0** you disable the Bluetooth feature of the WiFi chipset, which sometimes interferes;
+With **swcrypto=1** you shift the signal encryption from the hardware (WiFi chipset) to the software, thus taking some load off the WiFi chipset;
 
- \- With **swcrypto=1** you shift the signal encryption from the hardware (WiFi chipset) to the software, thus taking some load off the WiFi chipset;
+With **11n_disable=8** you enable antenna aggregation (Tx AMPDU). Don't be confused because of the option name 11n_disable: when its value is set to 8 it does not disable anything, but ***enables*** transmission antenna aggregation (Tx AMPDU).
 
- \- With **11n_disable=8** you enable antenna aggregation (Tx AMPDU). Don't be confused because of the option name 11n_disable: when its value is set to 8 it does not disable anything, but ***enables\*** transmission antenna aggregation (Tx AMPDU).
+Reboot your computer.
 
- c. Reboot your computer.
+d. No improvement? Then undo this hack, by removing the file that contains the toggled options, with this terminal command:
 
- d. No improvement? Then undo this hack, by removing the file that contains the toggled options, with this terminal command:
-
+```bash
 sudo rm -v /etc/modprobe.d/iwlwifi-3options.conf
+```
 
- Reboot your computer and proceed with item 3 below.
+Reboot your computer and proceed with item 3 below.

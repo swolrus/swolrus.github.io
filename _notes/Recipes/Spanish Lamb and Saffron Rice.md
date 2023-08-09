@@ -51,5 +51,3 @@ title: Spanish Lamb and Saffron Rice
 -	Add the vinegar (carefully, as the liquid may splatter). Cook, stirring frequently, 30 seconds to 1 minute, or until the liquid has cooked off
 -	Turn off the heat; stir in the chopped olives. Taste, then season with salt and pepper if desired
 
-----
-> Original note: [[_Recipes]]
