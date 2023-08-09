@@ -50,7 +50,7 @@ pre.highlight  {
   padding: 1px 1em 0.5em;
   code{
     padding: 0;
-    .rouge-code, span {
+    .rouge-code pre, span {
       font-family: "Source Code Pro", monospace !important;
       font-weight: 600;
     }
