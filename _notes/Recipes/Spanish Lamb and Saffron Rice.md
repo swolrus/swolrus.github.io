@@ -2,8 +2,6 @@
 title: Spanish Lamb and Saffron Rice
 ---
 
-
-
 [Original Recipe](https://media.blueapron.com/recipes/26693/c_card_pdfs/1612979453-28-0003-8861/2PRE12_SpanishSpicedLamb_WEB.pdf)
 
 ## Ingredients

@@ -2,8 +2,6 @@
 title: Firebase Bits 'n' Bobs
 ---
 
-
-
 ## Install
 
 ```bash

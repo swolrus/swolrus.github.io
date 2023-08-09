@@ -1,5 +1,5 @@
 ---
-title: TypeScript Tips
+title: TypeScript
 ---
 
 > A collection of typescript tricks, also a super quick definition for y'all.

@@ -2,8 +2,6 @@
 title: Teriyaki Sauce
 ---
 
-
-
 [Original Recipe](https://www.thecookingguy.com/cookbook/2019/1/3/teriyaki-sauce?rq=teriyaki)
 
 ## Ingredients

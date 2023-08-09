@@ -2,8 +2,6 @@
 title: Naan
 ---
 
-
-
 **_1_** cup greek yoghurt : **_2.25_** cup self raising flour
 - start at 2 cups of flour and add more if consistancy is too thin
 - use a large mixing bowl to initially combine

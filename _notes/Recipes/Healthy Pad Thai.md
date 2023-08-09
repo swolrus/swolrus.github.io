@@ -2,8 +2,6 @@
 title: Healthy Pad Thai
 ---
 
-
-
 [Original Recipe](https://fitmencook.com/healthy-chicken-pad-thai-meal-prep/?utm_source=pocket_mylist)
 
 ### Ingredients for 3 – 4 servings:
