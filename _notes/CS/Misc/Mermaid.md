@@ -2,8 +2,6 @@
 title: Mermaid Graphs Guide
 ---
 
-
-
 ## 1. Flowcharts
 
 A flowchart is a type of diagram that represents an algorithm, workflow or process. The flowchart shows the steps as boxes of various kinds, and their order by connecting the boxes with arrows. This diagrammatic representation illustrates a solution model to a given problem.
@@ -18,170 +16,217 @@ Possible directions are:
 -   `LR` - left right
 -   `TD` - same as TB
 
-Top to bottom
-```
+##### Top to bottom
+
+```raw
 graph TB;  
     A-->B;
 ```
+
 ```mermaid
 graph TB;  
     A-->B;
 ```
-Bottom to top
-```
+
+##### Bottom to top
+
+```raw
 graph BT;  
     A-->B;
 ```
+
 ```mermaid
 graph BT;  
     A-->B;
+    
 ```
-Right to left
+
+##### Right to left
+
 ```
 graph RL;  
     A-->B;
 ```
+
 ```mermaid
 graph RL;  
     A-->B;
 ```
-Left to Right
+
+##### Left to Right
+
 ```
 graph LR;  
     A-->B;
 ```
+
 ```mermaid
 graph LR;  
     A-->B;
 ```
-Top down
+
+##### Top down
+
 ```
 graph TD;  
     A-->B;
 ```
+
 ```mermaid
 graph TD;  
     A-->B;
 ```
+
 ### 1.2 Nodes & shapes
 
-Feature
+##### Node with Text
 
-Diagram
-
-Definition
-
-Node(Default)
-
-id
-
-graph LR;  
-    id;
-
-Node with Text
-
+```raw
 graph LR;  
     id1[This is the text in the box]
+```
 
-Node with Round Edges
+```mermaid
+graph LR;  
+    id1[This is the text in the box]
+```
+
+##### Node with Round Edges
+
+```raw
 graph LR;  
     id1(This is the text in the box)
+```
 
-Node in Circle Form
+```mermaid
+graph LR;  
+    id1(This is the text in the box)
+```
+
+##### Node in Circle Form
+
 ```
 graph LR;  
     id1((This is the text in the circle))
 ```
+
 ```mermaid
 graph LR;  
     id1((This is the text in the circle))
 ```
-Node in Asymmetric Shape
+
+##### Node in Asymmetric Shape
+
 ```
 graph LR;  
     id1>This is the text in the box]
 ```
+
 ```mermaid
 graph LR;  
     id1>This is the text in the box]
 ```
-Node in Rhombus Form
-```mermaid
+
+##### Node in Rhombus Form
+
+```raw
 graph LR;  
     id1{This is the text in the box}
 ```
-```
+
+```mermaid
 graph LR;  
     id1{This is the text in the box}
 ```
 
 ### 1.3 Links Between Nodes
-Link with Arrow Head
+
+##### Link with Arrow Head
+
 ```
 graph LR;  
     A-->B
 ```
+
 ```mermaid
 graph LR;  
     A-->B
 ```
-Open Link
+
+##### Open Link
+
 ```
 graph LR;  
     A---B
 ```
+
 ```mermaid
 graph LR;  
     A---B
 ```
-Text on Links(1)
+
+##### Text on Links(1)
+
 ```
 graph LR;  
     A-- This is the text ---B
 ```
+
 ```mermaid
 graph LR;  
     A-- This is the text ---B
 ```
-Text on Links(2)
+
+##### Text on Links(2)
+
 ```
 graph LR;  
     A---|This is the text|B
 ```
+
 ```mermaid
 graph LR;  
     A---|This is the text|B
 ```
-Link with Arrow Head and Text(1)
+
+##### Link with Arrow Head and Text(1)
+
 ```
 graph LR;  
     A-->|text|B
 ```
+
 ```mermaid
 graph LR;  
     A-->|text|B
 ```
-Link with Arrow Head and Text(2)
+
+##### Link with Arrow Head and Text(2)
+
 ```
 graph LR;  
     A-- text -->B
 ```
+
 ```mermaid
 graph LR;  
     A-- text -->B
 ```
 
-Dotted Link
+##### Dotted Link
+
 ```
 graph LR;  
     A-.->B;
 ```
+
 ```mermaid
 graph LR;  
     A-.->B;
 ```
 
-Dotted Link with Text
+##### Dotted Link with Text
+
 ```
 graph LR;  
     A-. text .-> B
@@ -191,39 +236,43 @@ graph LR;
     A-. text .-> B
 ```
 
-Thick Link
+##### Thick Link
+
 ```
 graph LR;  
     A ==> B
 ```
+
 ```mermaid
 graph LR;  
     A ==> B
 ```
 
-Thick link with text
+##### Thick link with text
+
 ```
 graph LR;  
     A == text ==> B
 ```
+
 ```mermaid
 graph LR;  
     A == text ==> B
 ```
+
 ### 1.4 Subgraphs
 
 #### Syntax
 
-```
+```raw
 subgraph title
     graph definition
 end
 ```
 
-#### Example:
-###### Code:
+#### Example
 
-```
+```raw
 graph TB
     c1-->a2
     subgraph one
@@ -236,7 +285,7 @@ graph TB
     c1-->c2
     end
 ```
-###### Graph:
+
 ```mermaid
 graph TB
     c1-->a2
@@ -260,121 +309,71 @@ A Sequence diagram is an interaction diagram that shows how processes operate wi
 
 The participants or actors are rendered in order of appearance in the diagram source text.
 
-```
-
-```
-
-```
+```mermaid
 sequenceDiagram
-```
-
-```
     participant Alice
-```
-
-```
     participant John
-```
-
-```
     Alice->>John: Hello John, how are you?
-```
-
-```
     John-->>Alice: Great!
 ```
-
-AliceJohnHello John, how are you?Great!Alice
-
-John
 
 You can specify the actor’s order of appearance to show the participants in a different order.
 
-```
-
-```
-
-```
+```raw
 sequenceDiagram
-```
-
-```
     participant John
-```
-
-```
     participant Alice
-```
-
-```
     Alice->>John: Hello John, how are you?
-```
-
-```
     John-->>Alice: Great!
 ```
 
-JohnAliceHello John, how are you?Great!John
-
-Alice
+```mermaid
+sequenceDiagram
+    participant John
+    participant Alice
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+```
 
 The participants can be defined implicitly without specifying them with the `participant` keyword.
 
-```
-
-```
-
-```
+```raw
 sequenceDiagram
-```
-
-```
     Alice->>John: Hello John, how are you?
-```
-
-```
     John-->>Alice: Great!
 ```
 
-AliceJohnHello John, how are you?Great!Alice
-
-John
+```mermaid
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+```
 
 ### 2.2 Aliases
 
 The participant can have a convenient identifier and a descriptive label.
 
-```
-
-```
-
-```
+```raw
 sequenceDiagram
-```
-
-```
     participant A as Alice
-```
-
-```
     participant J as John
-```
-
-```
     A->>J: Hello John, how are you?
-```
-
-```
     J-->>A: Great!
 ```
 
-AliceJohnHello John, how are you?Great!Alice
-
-John
+```mermaid
+sequenceDiagram
+    participant A as Alice
+    participant J as John
+    A->>J: Hello John, how are you?
+    J-->>A: Great!
+```
 
 ### 2.3 Messages
 
 Messages can be of two displayed either solid or with a dotted line.
+
+#### Schema
 
 ```raw
 [Actor][Arrow][Actor]:Message text
@@ -382,395 +381,275 @@ Messages can be of two displayed either solid or with a dotted line.
 
 There are six types of arrows currently supported:
 
-Arrow Type
+| Arrow Type | Description                                 |
+| ---------- | ------------------------------------------- |
+| ->         | Solid line without arrow                    |
+| –>         | Dotted line without arrow                   |
+| -»         | Solid line with arrowhead                   |
+| –»         | Dotted line with arrowhead                  |
+| -x         | Solid line with a cross at the end (async)  |
+| –x         | Dotted line with a cross at the end (async) |
 
-Description
 
-->
-
-Solid line without arrow
-
-–>
-
-Dotted line without arrow
-
--»
-
-Solid line with arrowhead
-
-–»
-
-Dotted line with arrowhead
-
--x
-
-Solid line with a cross at the end (async)
-
-–x
-
-Dotted line with a cross at the end (async)
 
 ### 2.4 Activations
 
-Activate and deactivate an actor.
+#### Examples
 
-```
+##### Activate and deactivate an actor.
 
-```
-
-```
+```raw
 sequenceDiagram
-```
 
-```
     Alice->>John: Hello John, how are you?
-```
 
-```
     activate John
-```
 
-```
     John-->>Alice: Great!
-```
 
-```
     deactivate John
 ```
 
-AliceJohnHello John, how are you?Great!Alice
-
-John
-
-Shortcut notation by appending `+/-` suffix to the message arrow.
-
-```
-
-```
-
-```
+```mermaid
 sequenceDiagram
+
+    Alice->>John: Hello John, how are you?
+
+    activate John
+
+    John-->>Alice: Great!
+
+    deactivate John
 ```
 
-```
+##### Activate via symbols
+
+```raw
+sequenceDiagram
+
     Alice->>+John: Hello John, how are you?
-```
 
-```
     John-->>-Alice: Great!
 ```
 
-AliceJohnHello John, how are you?Great!Alice
-
-John
-
-Activations can be stacked for same actor:
-
-```
-
-```
-
-```
+```mermaid
 sequenceDiagram
-```
 
-```
     Alice->>+John: Hello John, how are you?
+
+    John-->>-Alice: Great!
 ```
 
-```
+##### Multiple activiations
+
+```raw
+sequenceDiagram
+
+    Alice->>+John: Hello John, how are you?
+
     Alice->>+John: John, can you hear me?
-```
 
-```
     John-->>-Alice: Hi Alice, I can hear you!
-```
 
-```
     John-->>-Alice: I feel great!
 ```
 
-AliceJohnHello John, how are you?John, can you hear me?Hi Alice, I can hear you!I feel great!Alice
+```mermaid
+sequenceDiagram
 
-John
+    Alice->>+John: Hello John, how are you?
+
+    Alice->>+John: John, can you hear me?
+
+    John-->>-Alice: Hi Alice, I can hear you!
+
+    John-->>-Alice: I feel great!
+```
 
 ### 2.5 Notes
 
 Add notes to a sequence diagram by the notation `Note`.
 
+#### Schema
+
+`Note [ right of | left of | over ] [Actor]: Text in note content`
+
+#### Examples
+
+##### Right Side
+
 ```raw
-Note [ right of | left of | over ] [Actor]: Text in note content
-```
-
-1) Right Side
-
-```
-
-```
-
-```
 sequenceDiagram
-```
 
-```
     participant John
-```
 
-```
     Note right of John: Text in note
 ```
 
-JohnText in note
-
-John
-
-2) Left Side
-
-```
-
-```
-
-```
+```mermaid
 sequenceDiagram
-```
 
-```
     participant John
+
+    Note right of John: Text in note
 ```
 
-```
+##### Left Side
+
+```raw
+sequenceDiagram
+
+    participant John
+
     Note left of John: Text in note
 ```
 
-JohnText in note
-
-John
-
-3) Over
-
-```
-
-```
-
-```
+```mermaid
 sequenceDiagram
-```
 
-```
     participant John
+
+    Note left of John: Text in note
 ```
 
-```
+##### Over
+
+```raw
+sequenceDiagram
+
+    participant John
+
     Note over John: Text in note
 ```
 
-JohnText in note
-
-John
-
-4) Create notes spanning two participants
-
-```
-
-```
-
-```
+```mermaid
 sequenceDiagram
+
+    participant John
+
+    Note over John: Text in note
 ```
 
-```
+##### Create notes spanning two participants
+
+```raw
+sequenceDiagram
+
     Alice->>John: Hello John, how are you?
-```
 
-```
     Note over Alice,John: A typical interaction
 ```
 
-AliceJohnHello John, how are you?A typical interactionAlice
+```mermaid
+sequenceDiagram
 
-John
+    Alice->>John: Hello John, how are you?
+
+    Note over Alice,John: A typical interaction
+```
 
 ### 2.6 Loops
 
 Express loops in a sequence diagram by the notation `loop`.
 
+#### Schema
+
 ```raw
 loop Loop text
-... statements ...
+    ... statements ...
 end
 ```
 
-```
+#### Example
 
-```
-
-```
+```raw
 sequenceDiagram
-```
 
-```
     Alice->John: Hello John, how are you?
-```
 
-```
     loop Every minute
-```
 
-```
         John-->Alice: Great!
-```
 
-```
     end
 ```
 
-AliceJohnHello John, how are you?Great!loop[ Every minute ]Alice
+```mermaid
+sequenceDiagram
 
-John
+    Alice->John: Hello John, how are you?
+
+    loop Every minute
+
+        John-->Alice: Great!
+
+    end
+```
+
 
 ### 2.7 Alt
 
+#### Schema
+
 Express alternative paths in a sequence diagram by the notation `alt`.
 
-```
-
-```
-
-```
+```raw
 alt Describing text
-```
-
-```
-... statements ...
-```
-
-```
+    ... statements ...
 else
-```
-
-```
-... statements ...
-```
-
-```
+    ... statements ...
 end
 ```
 
 Or, if there is sequence that is optional (if without else).
 
-```
-
-```
-
-```
+```raw
 opt Describing text
-```
-
-```
-... statements ...
-```
-
-```
+     ... statements ...
 end
 ```
 
-Example:
+### Example:
 
-```
-
-```
-
-```
+```raw
 sequenceDiagram
-```
 
-```
     Alice->>John: Hello John, how are you?
-```
 
-```
     alt is sick
-```
 
-```
         John->>Alice: Not so good :(
-```
 
-```
     else is well
-```
 
-```
         John->>Alice: Feeling fresh like a daisy
-```
-
-```
     end
-```
-
-```
     opt Extra response
-```
-
-```
         John->>Alice: Thanks for asking
-```
-
-```
     end
 ```
 
-AliceJohnHello John, how are you?Not so good :(Feeling fresh like a daisyalt[ is sick ][ is well ]Thanks for askingopt[ Extra response ]Alice
+```mermaid
+sequenceDiagram
 
-John
+    Alice->>John: Hello John, how are you?
+
+    alt is sick
+
+        John->>Alice: Not so good :(
+
+    else is well
+
+        John->>Alice: Feeling fresh like a daisy
+    end
+    opt Extra response
+        John->>Alice: Thanks for asking
+    end
+```
 
 ## 3. Gant Diagrams
 
 A Gantt chart is a type of bar chart, first developed by Karol Adamiecki in 1896, and independently by Henry Gantt in the 1910s, that illustrates a project schedule. Gantt charts illustrate the start and finish dates of the terminal elements and summary elements of a project.
-
-```
-
-```
-
-```
-gantt
-```
-
-```
-    title A Gantt Diagram
-```
-
-```
-    dateFormat  YYYY-MM-DD
-```
-
-```
-    section Section
-```
-
-```
-    First Task       :a1, 2018-07-01, 30d
-```
-
-```
-    Another Task     :after a1, 20d
-```
-
-```
-    section Another
-```
-
-```
-    Second Task      :2018-07-12, 12d
-```
-
-```
-    Third Task       : 24d
-```
-
-2018-07-012018-07-082018-07-152018-07-222018-07-292018-08-052018-08-122018-08-19First Task Another Task Second Task Third Task SectionAnother
-
-A Gantt Diagram
 
 ```raw
 gantt
@@ -802,9 +681,35 @@ gantt
        Add another diagram to demo page    :48h
 ```
 
-2018-01-072018-01-092018-01-112018-01-132018-01-152018-01-172018-01-192018-01-21Completed task Active task Future task Future task2 Completed task in the critical line Implement parser and jison Create tests for parser Future task in critical line Create tests for renderer Add to mermaid Describe gantt syntax Add gantt diagram to demo page Add another diagram to demo page Describe gantt syntax Add gantt diagram to demo page Add another diagram to demo page A sectionCritical tasksDocumentationLast section
+```mermaid
+gantt
+       dateFormat  YYYY-MM-DD
+       title Adding GANTT diagram functionality to mermaid
 
-Adding GANTT diagram functionality to mermaid
+       section A section
+       Completed task            :done,    des1, 2018-01-06,2018-01-08
+       Active task               :active,  des2, 2018-01-09, 3d
+       Future task               :         des3, after des2, 5d
+       Future task2              :         des4, after des3, 5d
+
+       section Critical tasks
+       Completed task in the critical line :crit, done, 2018-01-06,24h
+       Implement parser and jison          :crit, done, after des1, 2d
+       Create tests for parser             :crit, active, 3d
+       Future task in critical line        :crit, 5d
+       Create tests for renderer           :2d
+       Add to mermaid                      :1d
+
+       section Documentation
+       Describe gantt syntax               :active, a1, after des1, 3d
+       Add gantt diagram to demo page      :after a1  , 20h
+       Add another diagram to demo page    :doc1, after a1  , 48h
+
+       section Last section
+       Describe gantt syntax               :after doc1, 3d
+       Add gantt diagram to demo page      :20h
+       Add another diagram to demo page    :48h
+```
 
 ## 4. Demos
 
@@ -818,15 +723,13 @@ graph LR
     C --> D
 ```
 
-Link text
-
-Square Rect
-
-Circle
-
-Round Rect
-
-Rhombus
+```mermaid
+graph LR
+    A[Square Rect] -- Link text --> B((Circle))
+    A --> C(Round Rect)
+    B --> D{Rhombus}
+    C --> D
+```
 
 ### 4.2 Flowchart with Decision
 
@@ -839,25 +742,14 @@ graph TD
     C -->|Three| F[fa:fa-car Car]
 ```
 
-Get money
-
-One
-
-Two
-
-Three
-
-Christmas
-
-Go shopping
-
-Let me think
-
-Laptop
-
-iPhone
-
-Car
+```mermaid
+graph TD
+    A[Christmas] -->|Get money| B(Go shopping)
+    B --> C{Let me think}
+    C -->|One| D[Laptop]
+    C -->|Two| E[iPhone]
+    C -->|Three| F[fa:fa-car Car]
+```
 
 ### 4.3 Larger Flowchart with Some Styling
 
@@ -885,40 +777,42 @@ graph TB
      class di orange
 ```
 
-A
+```mermaid
+graph TB
+    sq[Square shape] --> ci((Circle shape))
 
-Two line  
-edge comment
+    subgraph A
+        od>Odd shape]-- Two line<br/>edge comment --> ro
+        di{Diamond with <br/> line break} -.-> ro(Rounded<br>square<br>shape)
+        di==>ro2(Rounded square shape)
+    end
 
-Odd shape
+    %% Notice that no text in shape are added here instead that is appended further down
+    e --> od3>Really long text with linebreak<br>in an Odd shape]
 
-Rounded  
-square  
-shape
+    %% Comments after double percent signs
+    e((Inner / circle<br>and some odd <br>special characters)) --> f(,.?!+-*ز)
 
-Diamond with  
-line break
+    cyr[Cyrillic]-->cyr2((Circle shape Начало));
 
-Rounded square shape
-
-Square shape
-
-Circle shape
-
-Inner / circle  
-and some odd  
-special characters
-
-Really long text with linebreak  
-in an Odd shape
-
-,.?!+-\*ز
-
-Cyrillic
-
-Circle shape Начало
+     classDef green fill:#9f6,stroke:#333,stroke-width:2px
+     classDef orange fill:#f96,stroke:#333,stroke-width:4px
+     class sq,e green
+     class di orange
+```
 
 ### 4.4 Basic Sequence Diagram
+```raw
+sequenceDiagram
+    Alice ->> Bob: Hello Bob, how are you?
+    Bob-->>John: How about you John?
+    Bob--x Alice: I am good thanks!
+    Bob-x John: I am good thanks!
+    Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+
+    Bob-->Alice: Checking with John...
+    Alice->John: Yes... John, how are you?
+```
 
 ```mermaid
 sequenceDiagram
@@ -932,11 +826,21 @@ sequenceDiagram
     Alice->John: Yes... John, how are you?
 ```
 
-AliceBobJohnHello Bob, how are you?How about you John?I am good thanks!I am good thanks!Bob thinks a longlong time, so longthat the text doesnot fit on a row.Checking with John...Yes... John, how are you?AliceBob
-
-John
-
 ### 4.5 Message to Self in Loop
+
+```raw
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts<br/>prevail...
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+```
 
 ```mermaid
 sequenceDiagram

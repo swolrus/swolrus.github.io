@@ -1,0 +1,21 @@
+<script type="module">
+
+  let nodes = document.querySelectorAll('.language-mermaid');
+  for (var n of nodes) {
+    let d = document.createElement("code");
+    d.classList.add('.mermaid');
+    let nParent = n.parentNode;
+    n.replaceWith(d);
+    n = nParent.firstChild;
+  }
+
+  import * as $ from 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js';
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+  let config = { startOnLoad: false, flowchart: { useMaxWidth: false, htmlLabels: true } };
+  mermaid.initialize(config);
+  console.log(nodes);
+  mermaid.run({
+    nodes: n,
+  });
+</script>
+

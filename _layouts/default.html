@@ -9,5 +9,8 @@
     </div>
 
     {% include link-previews.html wrapperQuerySelector="content" %}
+    {% if page.mermaid == true %}
+      {% include mermaid.html %}
+    {% endif %}
   </body>
 </html>

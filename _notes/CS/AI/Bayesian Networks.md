@@ -4,8 +4,6 @@ title: Bayesian Networks
 
 
 
-# Bayesian Networks
-
 - Simple probability
 - A.K.A. belief network/casual networks
 - Function off directed a-cyclic graphs
