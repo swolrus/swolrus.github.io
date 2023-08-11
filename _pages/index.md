@@ -22,8 +22,8 @@ DWN
   {% for note in recent_notes %}
     <li>
       {{ note.last_modified_at | date: "%Y-%m-%d" }} — <a class="internal-link" href="{{ note.url }}">
-      {% if note.index == true %}
-      {{ note.title }}
+      {% if note.index == true %}{% if note.title != '/.' %}
+      {{ note.title | append: '/' }}{% endif %}
       {% else %}
       {{ note.relative_path | remove: "_notes" }}
       {% endif %}

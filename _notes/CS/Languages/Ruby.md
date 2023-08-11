@@ -2,7 +2,7 @@
 title: Ruby and Jekyll
 ---
 
-An index generating plugin designed for jekyll.garden. God AI is good these days though, few stack overflow threads and a quick query had me halfway, bit of dev and it was perfect.
+An index generating plugin designed for jekyll.garden.
 
 ## Run a generator only once during serve.
 
@@ -80,19 +80,15 @@ And this is what the program is spitting out
 ```html
 ---
 layout: note
-title: /Recipes
+title: /path/to/dir
 ---
 
 
-  <a href='/notes/Recipes/Chicken%20Naan.html'>/Recipes/Chicken Naan</a>
+  <a href=''>/path/to/dir/file1.md</a>
 
-  <a href='/notes/Recipes/Dense%20af%20Protien%20Pancakes.html'>/Recipes/Dense af Protien Pancakes</a>
+  <a href=''>/path/to/dir/file2.md</a>
 
-  <a href='/notes/Recipes/Healthy%20Pad%20Thai.html'>/Recipes/Healthy Pad Thai</a>
+  <a href=''>/path/to/dir/file3.md</a>
 
-  <a href='/notes/Recipes/Naan.html'>/Recipes/Naan</a>
-
-  <a href='/notes/Recipes/Spanish%20Lamb%20and%20Saffron%20Rice.html'>/Recipes/Spanish Lamb and Saffron Rice</a>
-
-  <a href='/notes/Recipes/Teriyaki%20Sauce.html'>/Recipes/Teriyaki Sauce</a>
 ```
+
