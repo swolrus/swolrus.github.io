@@ -1,5 +1,6 @@
 ---
 title: Mermaid Graphs Guide
+mermaid: true
 ---
 
 ## 1. Flowcharts

@@ -1,0 +1,11 @@
+---
+layout: page
+title: About
+permalink: /graph
+---
+
+<div>
+<p>Here are all the notes in this garden, along with their links, visualized as a graph.</p>
+
+{% include notes_graph.html %}
+</div>

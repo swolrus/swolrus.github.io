@@ -1,5 +1,5 @@
 ---
-title: Mermaid Testing!
+title: Mermaid Integration With Jekyll!
 mermaid: true
 ---
 
@@ -21,14 +21,15 @@ Then in
 FILE: 'project/_includes/mermaid.html'
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.3.0/mermaid.min.js"></script>
-<script>
-  mermaid.initialize({ startOnLoad: false });
-  await mermaid.run({
-    querySelector: '.language-mermaid',
-  });
+<script type="text/javascript">
+  let mermaidNodes = document.querySelectorAll('code.language-mermaid');
+  for (let mermaidNode of mermaidNodes) {
+    mermaidNode.classList = ['mermaid'];
+  }
 </script>
-
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+</script>
 ```
 
 And in your layout for your notes:
@@ -41,7 +42,7 @@ And in your layout for your notes:
   ...
   ...
     {% if page.mermaid == 'true' %}
-      {% include mermaid.js %}
+      {% include mermaid.html %}
     {% endif %}
   </body>
 </html>

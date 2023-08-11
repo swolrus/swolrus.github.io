@@ -14,15 +14,21 @@ DWN
 
 <!-- search bar -->
 <div style="display: flex; margin-top: 1rem">
-    <strong>Recently updated notes</strong>
+    <strong>ALL NOTES</strong>
     <input class="input is-medium" style="margin-left: auto;" type="text" placeholder="Search notes.." id="search-input" autocomplete="off">
 </div>
 <ul id="note-list">
   {% assign recent_notes = site.notes | sort: "last_modified_at_timestamp" | reverse %}
-  {% for note in recent_notes limit: 5 %}
+  {% for note in recent_notes %}
     <li>
-      {{ note.last_modified_at | date: "%Y-%m-%d" }} — <a class="internal-link" href="{{ note.url }}">{{ note.title }}</a>
-      <iframe style="height: 0; width: 0;display: 'inline-block';" src="{{ site.url }}{{ note.url }}"></iframe>
+      {{ note.last_modified_at | date: "%Y-%m-%d" }} — <a class="internal-link" href="{{ note.url }}">
+      {% if note.index == true %}
+      {{ note.title }}
+      {% else %}
+      {{ note.relative_path | remove: "_notes" }}
+      {% endif %}
+    </a>
+      <div style="display: 'hidden'">{{note.content}}</div>
     </li>
   {% endfor %}
 </ul>
@@ -36,7 +42,7 @@ DWN
   
   window.onload = function() {
     for (var i=0 ; i<noteList.children.length ; i++ ) {
-      search[i] = String(noteList.children[i].innerText) + String(noteList.children[i].lastElementChild.contentDocument.children[0].children[1].innerText);
+      search[i] = String(noteList.children[i].innerText) + String(noteList.children[i].lastElementChild.innerText);
       noteList.children[i].lastElementChild.remove();
     }
     searchInput.addEventListener("input", startInterval);

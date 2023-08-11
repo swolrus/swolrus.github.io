@@ -5,9 +5,9 @@ exclude:             ['_includes/notes_graph.json']
 # Specifically, when using GitHub Pages, the baseurl should point to where GitHub
 # Pages deploys your repository (which is usually the repository name).
 # baseurl:             'https://swolrus.github.io'
-
+baseurl:                ''
 # If you are using a host that cannot resolve URLs that do
-# not end with .html (such as Neocities), set this to 'true'.
+# not end with .html (such as Neocities), set "his to 'true'.
 use_html_extension:  false
 
 # Set to `true` to open non-internal links in new tabs, or
@@ -19,7 +19,7 @@ open_external_links_in_new_tab: true
 # as their browser will communicate with Twitter's servers.
 embed_tweets: true
 
-permalink:           pretty
+#permalink:           pretty
 relative_permalinks: false
 
 plugins:
@@ -32,10 +32,10 @@ sass:
 collections:
   notes:
     output: true
-    permalink: /note/:slug
 
 kramdown:
   syntax_highlighter: rouge
+  math_engine: katex
   syntax_highlighter_opts:
     block:
       line_numbers: true
@@ -46,6 +46,6 @@ defaults:
     values:
       layout: "default"
   - scope:
-      path: "_notes/**/*.md"
+      path: "**/*.md"
     values:
       layout: "note"

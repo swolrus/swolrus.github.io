@@ -18,6 +18,7 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
+    execjs (2.8.1)
     ffi (1.15.5)
     forwardable-extended (2.6.0)
     google-protobuf (3.22.2)
@@ -44,8 +45,13 @@ GEM
       sass-embedded (~> 1.54)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
+    katex (0.10.0)
+      execjs (~> 2.8)
     kramdown (2.4.0)
       rexml
+    kramdown-math-katex (1.0.1)
+      katex (~> 0.4)
+      kramdown (~> 2.0)
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     liquid (4.0.4)
@@ -81,8 +87,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  execjs (~> 2.8)
   jekyll (~> 4.3)
   jekyll-last-modified-at!
+  kramdown-math-katex (~> 1.0)
   nokogiri
   webrick (~> 1.8)
 

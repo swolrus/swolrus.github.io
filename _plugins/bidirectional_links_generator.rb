@@ -15,6 +15,7 @@ class BidirectionalLinksGenerator < Jekyll::Generator
     # anchor tag elements (<a>) with "internal-link" CSS class
     all_docs.each do |current_note|
       all_docs.each do |note_potentially_linked_to|
+        next if File.directory?(note_potentially_linked_to.path)
         note_title_regexp_pattern = Regexp.escape(
           File.basename(
             note_potentially_linked_to.basename,

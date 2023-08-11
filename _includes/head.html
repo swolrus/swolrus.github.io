@@ -12,7 +12,9 @@
   <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
 
   <link rel="stylesheet" href="{{ site.baseurl }}/styles.css">
-
+  {% if page.latex == true %}
+  <link href="{{ site.baseurl }}/assets/css/vendor/Katex.css" rel="stylesheet" class="default" />
+  {% endif %}
   {% if page.excerpt %}
   <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}"/>
   {% else %}

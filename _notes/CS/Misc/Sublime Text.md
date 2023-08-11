@@ -2,6 +2,9 @@
 title: Sublime Tips
 ---
 
+# Sublime and LSP
+
+[This is what will turn sublime into a fully functioning IDE](https://lsp.sublimetext.io/language_servers/)
 
 
 [Pep8 Error codes, use to set ignore in SublimeLinter-flake8](https://pep8.readthedocs.io/en/latest/intro.html#error-codes)
