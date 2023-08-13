@@ -99,10 +99,13 @@
 
   const onClick = (d) => {
     d.preventDefault();
-    window.location = d.path;
+    window.location = d.target.__data__.path;
   };
 
+  var mouseOutTimeout = null;
   const onMouseover = function (d) {
+    if (mouseOutTimeout !== null)
+      clearTimeout(mouseOutTimeout);
     if (dragging) return;
     const relatedNodesSet = new Set();
     const id = d.target.__data__.id;
@@ -141,7 +144,6 @@
     });
   };
 
-  var mouseOutTimeout = null;
   const onMouseout = function (d) {
     if (mouseOutTimeout !== null)
       clearTimeout(mouseOutTimeout);
