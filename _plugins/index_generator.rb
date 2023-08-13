@@ -35,7 +35,7 @@ class IndexGenerator < Jekyll::Generator
   def add_link(link_array, link_rel_path, suffix)
     permalink = @parser.escape("/note/#{link_rel_path}/")
     if suffix == "/"
-      permalink = permalink + "index/"
+      permalink = permalink + "index"
     end
     #Jekyll.logger.info(permalink)
     link = "<a href='#{permalink}'>/#{link_rel_path}#{suffix}</a>"
@@ -75,7 +75,7 @@ class IndexGenerator < Jekyll::Generator
     index_erb = <<~ERB
     ---
     layout: note
-    title: #{relative_path}index/
+    title: #{relative_path}index
     index: true
     ---
     <h3>Directories</h3>
