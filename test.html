@@ -143,12 +143,18 @@
     });
   };
 
+  var mouseOutTimeout = null;
   const onMouseout = function (d) {
-    if (dragging) return;
-    node.attr("class", "");
-    link.attr("class", "");
-    text.attr("class", "");
-    link.attr("stroke-width", STROKE);
+    if (mouseOutTimeout != null)
+      clearTimeout(mouseOutTimeout);
+    mouseOutTimeout = setTimeout(() => {
+      if (dragging) return;
+      node.attr("class", "");
+      link.attr("class", "");
+      text.attr("class", "");
+      link.attr("stroke-width", STROKE);
+      mouseOutTimeout = null;
+    }, 500);
   };
 
   // Reheat the simulation when drag starts, and fix the subject position.
@@ -256,8 +262,6 @@
     .attr("alignment-baseline", "central")
     .attr("active", (d) => isCurrentPath(d.path) ? true : null)
     .on("click", onClick)
-    .on("mouseover", onMouseover)
-    .on("mouseout", onMouseout);
 
   // Create a simulation with several forces.
   const simulation = d3.forceSimulation(nodes)
