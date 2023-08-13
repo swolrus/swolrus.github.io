@@ -32,7 +32,7 @@ sass:
 collections:
   notes:
     output: true
-    permalink: /note/:path
+    permalink: /note/:path/
 
 kramdown:
   syntax_highlighter: rouge

@@ -33,7 +33,7 @@ class IndexGenerator < Jekyll::Generator
   end
 
   def add_link(link_array, link_rel_path, suffix)
-    permalink = @parser.escape("/note/#{link_rel_path}/")
+    permalink = @parser.escape("/note/#{link_rel_path}")
     if suffix == "/"
       permalink = permalink + "index"
     end
