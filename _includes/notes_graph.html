@@ -142,7 +142,7 @@
 
   var mouseOutTimeout = null;
   const onMouseout = function (d) {
-    if (mouseOutTimeout != null)
+    if (mouseOutTimeout !== null)
       clearTimeout(mouseOutTimeout);
     mouseOutTimeout = setTimeout(() => {
       if (dragging) return;
