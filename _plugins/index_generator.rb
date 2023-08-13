@@ -76,7 +76,6 @@ class IndexGenerator < Jekyll::Generator
     ---
     layout: note
     title: #{relative_path}index/
-
     index: true
     ---
     <h3>Directories</h3>

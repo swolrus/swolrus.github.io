@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <style>
   .links line {
@@ -28,7 +30,7 @@
   }
 
   .inactive {
-    opacity: 0.3;
+    opacity: 0.1;
     transition: all 0.15s ease-out;
   }
 
@@ -36,15 +38,16 @@
     background: #fcfcfc;
     border-radius: 4px;
     height: auto;
-    max-width: 100%;
+    width: 100%;
   }
 
   #node-graph > svg {
     max-width: 100%;
-    height: auto;
     display: block;
   }
 </style>
+</head>
+<body>
 <div id="node-graph"></div>
 <script type="module">
 
@@ -306,3 +309,5 @@
   }
 
 </script>
+</body>
+</html>

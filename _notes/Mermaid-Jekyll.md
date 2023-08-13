@@ -18,7 +18,7 @@ mermaid: true
 
 Then in 
 
-FILE: 'project/_includes/mermaid.html'
+FILE: `project/_includes/mermaid.html`
 
 ```html
 <script type="text/javascript">

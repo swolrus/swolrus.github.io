@@ -2,6 +2,7 @@
 class BidirectionalLinksGenerator < Jekyll::Generator
   safe true
   def generate(site)
+    return
     graph_nodes = []
     graph_edges = []
 
