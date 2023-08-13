@@ -2,7 +2,13 @@
 title: Ruby and Jekyll
 ---
 
-An index generating plugin designed for jekyll.garden.
+Just a few Ruby snippets, most specific to the SSG Jekyll
+
+## Using gsub for regex syntax
+
+```ruby
+gsub(search_term, replacement_term, string_searched, ignore.case = FALSE, perl = FALSE, fixed = FALSE, useBytes = FALSE)
+```
 
 ## Run a generator only once during serve.
 

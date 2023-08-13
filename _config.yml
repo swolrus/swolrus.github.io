@@ -32,6 +32,7 @@ sass:
 collections:
   notes:
     output: true
+    permalink: /note/:path
 
 kramdown:
   syntax_highlighter: rouge
@@ -46,6 +47,25 @@ defaults:
     values:
       layout: "default"
   - scope:
-      path: "**/*.md"
+      path: "_notes/**/*.md"
     values:
       layout: "note"
+
+
+      ## Built-in Variables
+
+      ## In addition to the variables provided in the configuration file, there are built-in variables that can be used in the scope comparison.
+
+      ## | Variable | Description |
+      ## | --- | --- |
+      ## | `page.regularPath` | The path of the page relative to the `content` directory, with the extension removed. This is equal to the `page.path` without the `page.ext` |
+      ## | `page.directory` | The directory portion of the `page.path` |
+      ## | `page.base` | The basename of the `page.path` |
+      ## | `page.stem` | The stem of the `page.path` (the filename without the extension) |
+      ## | `page.ext` | The file extension of the `page.path` |
+
+      ## Examples
+
+      ### Basic
+
+      ## This example shows how to set a default layout for all files in `content/notes` and `content/articles` directories.

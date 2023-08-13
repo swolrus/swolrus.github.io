@@ -24,51 +24,26 @@ class IndexGenerator < Jekyll::Generator
     @verbos_debug = false
 
     # Functional code
-    start_path = File.join(site.source, "_notes")
-    process_directory(start_path, site)
+    start_path = File.join(site.source, "_notes/")
+    create_index(start_path, site)
 
     # Log completion and lock from running again
     Jekyll.logger.info("      IndexGenerator: Generation of indexes complete.")
     @render_count = @render_count - 1
   end
 
-  def process_directory(directory, site)
-
-    Dir.foreach(directory) do |entry|
-    # Skip the index, and navigation entries
-    next if entry == '.' || entry == '..' || entry == 'index.md'
-
-      # Update path
-      full_path = File.join(directory, entry)
-
-      if File.directory?(full_path)
-        if @verbos_debug == true
-          Jekyll.logger.info("DIR: #{full_path}")
-        end
-        # Recursively process the subdirectory
-        process_directory(full_path, site)
-        next
-      end
-
-      if @verbos_debug == true
-        Jekyll.logger.info("DIR: #{full_path}")
-      end
-      create_index(directory, site)
+  def add_link(link_array, link_rel_path, suffix)
+    permalink = @parser.escape("/note/#{link_rel_path}/")
+    if suffix == "/"
+      permalink = permalink + "index/"
     end
-  end
-
-  def add_link(link_array, link_rel_path, prefix, suffix)
-    md_suffix = ".md"
-    if suffix == ""
-      md_suffix = ""
-    end
-    link = "<a href='#{prefix}/#{link_rel_path}#{suffix}'>./#{link_rel_path}#{md_suffix}</a>"
+    #Jekyll.logger.info(permalink)
+    link = "<a href='#{permalink}'>/#{link_rel_path}#{suffix}</a>"
     link_array << link
   end
 
   def create_index(directory, site)
-    relative_path = Pathname.new(directory).relative_path_from(Pathname.new(site.source + "/_notes"))
-    # Get all .md files within the subdirectory
+    Jekyll.logger.info("Indexing: #{directory}")
     # Initialize an array to store the links
     links_dirs = []
 
@@ -78,29 +53,30 @@ class IndexGenerator < Jekyll::Generator
     # Process each entry in the directory
     Dir.foreach(directory) do |entry|
     next if entry == '.' || entry == '..' || entry == 'index.md'
-
       # New fullpath
-      entry_full_path =  File.join(directory, entry)
-
-      if File.directory?(entry_full_path)
-        entry_relative_path = Pathname.new(entry_full_path).relative_path_from(Pathname.new(site.source + "/_notes"))
-        # add entry to dir array
-        add_link(links_dirs, entry_relative_path, "/notes", "")
-        next # if entry was a dir it can't be a file
-      end
-
       entry_full_path =  File.join(directory, File.basename(entry, ".md"))
       entry_relative_path = Pathname.new(entry_full_path).relative_path_from(Pathname.new(site.source + "/_notes"))
+      if File.directory?(entry_full_path)
+        # add entry to dir array
+        add_link(links_dirs, entry_relative_path, "/")
+        create_index(entry_full_path, site)
+        next # if entry was a dir it can't be a file
+      end
       # Add the link to the file array
-      add_link(links_files, entry_relative_path, "/notes", ".html")
+      add_link(links_files, entry_relative_path, ".md")
     end
 
   # Generate the index.html content using the template
+    relative_path = "/#{Pathname.new(directory).relative_path_from(Pathname.new(site.source + "/_notes"))}/"
+    if relative_path == '/./'
+      relative_path = '/'
+    end
 
     index_erb = <<~ERB
     ---
     layout: note
-    title: /#{relative_path}
+    title: #{relative_path}index/
+
     index: true
     ---
     <h3>Directories</h3>
@@ -121,6 +97,30 @@ class IndexGenerator < Jekyll::Generator
     # Create a new Jekyll page for the index, we need w+ as to overwrite
     File.open(index_path, "w+") do |file|
       file.puts(index_contents)
+    end
+  end
+
+  def friendly_frontmatter(file)
+    content = File.read(file)
+
+    # Check if the file has YAML frontmatter
+    if content =~ /\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)/m
+      # Extract the YAML frontmatter
+      frontmatter = YAML.safe_load(content)
+
+      # Check if the frontmatter has a permalink key
+      if frontmatter.key?('permalink')
+        # Replace spaces with hyphens in the permalink value
+        frontmatter['permalink'] = frontmatter['permalink'].gsub(' ', '-')
+
+        # Update the file content with updated YAML frontmatter
+        updated_content = content.sub(/\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)/m, "---\n#{frontmatter.to_yaml}---\n")
+        File.open(file, 'w') do |f|
+          f.write(updated_content)
+        end
+
+        puts "Updated permalink for #{file}"
+      end
     end
   end
 end
