@@ -5,7 +5,7 @@ permalink: /graph
 ---
 
 <div>
-<p>Here are all the notes in this garden, along with their links, visualized as a graph.</p>
+<p>Drag or click a node :)</p>
 
 {% include notes_graph.html %}
 </div>

@@ -14,7 +14,7 @@ class IndexGenerator < Jekyll::Generator
       @render_count = 1
     end
     if @render_count < 1
-      Jekyll.logger.info("      IndexGenerator: Already generated once, restart to refresh index pages.")
+      Jekyll.logger.info("[IndexGenerator] Already generated once, restart to refresh index pages.")
       return
     end
 
@@ -28,22 +28,22 @@ class IndexGenerator < Jekyll::Generator
     create_index(start_path, site)
 
     # Log completion and lock from running again
-    Jekyll.logger.info("      IndexGenerator: Generation of indexes complete.")
+    Jekyll.logger.info("[IndexGenerator] Generation of indexes complete.")
     @render_count = @render_count - 1
   end
 
   def add_link(link_array, link_rel_path, suffix)
-    permalink = @parser.escape("/note/#{link_rel_path}")
+    permalink = @parser.escape("/notes/#{link_rel_path}")
     if suffix == "/"
-      permalink = permalink + "index"
+      permalink = permalink + "/index"
     end
     #Jekyll.logger.info(permalink)
-    link = "<a href='#{permalink}'>/#{link_rel_path}#{suffix}</a>"
+    link = "<a href='#{permalink}.html'>/#{link_rel_path}#{suffix}</a>"
     link_array << link
   end
 
   def create_index(directory, site)
-    Jekyll.logger.info("Indexing: #{directory}")
+    Jekyll.logger.info("[IndexGenerator] Indexing dir: #{directory}")
     # Initialize an array to store the links
     links_dirs = []
 
@@ -52,7 +52,7 @@ class IndexGenerator < Jekyll::Generator
     dirsEndedFlag = false
     # Process each entry in the directory
     Dir.foreach(directory) do |entry|
-    next if entry == '.' || entry == '..' || entry == 'index.md'
+    next if entry == '.' || entry == '..' || entry == 'index.md' || entry == 'Private'
       # New fullpath
       entry_full_path =  File.join(directory, File.basename(entry, ".md"))
       entry_relative_path = Pathname.new(entry_full_path).relative_path_from(Pathname.new(site.source + "/_notes"))
@@ -67,15 +67,16 @@ class IndexGenerator < Jekyll::Generator
     end
 
   # Generate the index.html content using the template
-    relative_path = "/#{Pathname.new(directory).relative_path_from(Pathname.new(site.source + "/_notes"))}/"
-    if relative_path == '/./'
-      relative_path = '/'
+    relative_path = "#{Pathname.new(directory).relative_path_from(Pathname.new(site.source + "/_notes"))}/"
+    if relative_path == './'
+      relative_path = ''
     end
 
     index_erb = <<~ERB
     ---
     layout: note
-    title: #{relative_path}index
+    title: /#{relative_path}
+
     index: true
     ---
     <h3>Directories</h3>

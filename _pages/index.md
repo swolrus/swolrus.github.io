@@ -51,15 +51,13 @@ DWN
 
   const startInterval = () => {
     if (!loaded) return;
-    stopInterval();
+    if (timer !== null) {
+      clearInterval(timer);
+      timer = null;
+    }
     timer = setInterval(function() {
       doSearch();
-    }, 100);
-  }
-
-  const stopInterval = () => {
-    // To cancel an interval, we pass the timer to clearInterval()
-    clearInterval(timer);
+    }, 1000);
   }
 
   const doSearch = () => {
@@ -73,5 +71,6 @@ DWN
       }
     }
     clearInterval(timer);
+    timer = null;
   };
 </script>

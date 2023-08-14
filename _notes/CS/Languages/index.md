@@ -1,11 +1,12 @@
 ---
 layout: note
-title: /CS/Languages/index/
+title: /CS/Languages/
+
 index: true
 ---
 <h3>Directories</h3>
 
 <h3>Files</h3>
 
-<a href='/note/CS/Languages/Ruby/'>/CS/Languages/Ruby.md</a>
+<a href='/notes/CS/Languages/Ruby.html'>/CS/Languages/Ruby.md</a>
 

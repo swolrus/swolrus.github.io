@@ -10,5 +10,4 @@ gem "webrick", "~> 1.8"
 gem "nokogiri"
 
 gem "kramdown-math-katex", "~> 1.0"
-
 gem "execjs", "~> 2.8"

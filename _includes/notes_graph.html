@@ -1,8 +1,6 @@
-<head>
-  <style>
+<style>
   .links line {
     stroke: #ccc;
-    opacity: 0.6;
     transition: opacity 0.5s ease-out;
   }
 
@@ -13,14 +11,14 @@
   }
 
   .text text {
-    cursor: pointer;
-    fill: #333;
-    text-shadow: -1px -1px 0 #fafafabb, 1px -1px 0 #fafafabb, -1px 1px 0 #fafafabb, 1px 1px 0 #fafafabb;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     transition: opacity 0.5s ease-out;
+    cursor: pointer;
+    fill: #333;
+    text-shadow: -1px -1px 0 #fafafabb, 1px -1px 0 #fafafabb, -1px 1px 0 #fafafabb, 1px 1px 0 #fafafabb;
   }
 
   .nodes [active],
@@ -30,53 +28,34 @@
   }
 
   .inactive {
-    opacity: 0.5;
+    opacity: 0.4;
+    transition: all 0.15s ease-out;
   }
 
   #node-graph {
     background: #fcfcfc;
     border-radius: 4px;
     height: auto;
-    max-width: 100%;
   }
 
   #node-graph > svg {
     max-width: 100%;
-    height: auto;
     display: block;
   }
 </style>
 <div id="node-graph"></div>
 <script type="module">
-
   import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
   var dragging = false;
-  const MINIMAL_NODE_SIZE = 7;
-  const MAX_NODE_SIZE = 10;
+  const MINIMAL_NODE_SIZE = 8;
+  const MAX_NODE_SIZE = 12;
+  const ACTIVE_RADIUS_FACTOR = 1.5;
   const STROKE = 1;
-  const FONT_SIZE = 10;
+  const FONT_SIZE = 16;
+  const TICKS = 200;
+  const FONT_BASELINE = 40;
   const MAX_LABEL_LENGTH = 50;
-  const graphWrapper = document.getElementById('node-graph')
-  const element = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  element.classList = ["node-svg"];
-  const width = graphWrapper.getBoundingClientRect().width;
-  const height = window.innerHeight * 0.8;
-  element.setAttribute("width", width);
-  element.setAttribute("height", height);
-  graphWrapper.appendChild(element);
-
-  const data = {"edges":[{"source":"4767834765734710511010010112047","target":"6510097109391153279112116105109105115101114"},{"source":"4767834765734710511010010112047","target":"6697121101115105971103278101116119111114107115"},{"source":"4767834710511010010112047","target":"4767834765734710511010010112047"},{"source":"4767834770117108108831169799107477010511410198971151014710511010010112047","target":"7010511410198971151013266105116115323911039326611198115"},{"source":"47678347701171081088311697991074710511010010112047","target":"4767834770117108108831169799107477010511410198971151014710511010010112047"},{"source":"47678347701171081088311697991074710511010010112047","target":"788677329711010032781111001017483"},{"source":"47678347701171081088311697991074710511010010112047","target":"841211121018399114105112116"},{"source":"4767834710511010010112047","target":"47678347701171081088311697991074710511010010112047"},{"source":"476783477697110103117971031011154710511010010112047","target":"821179812132971101003274101107121108108"},{"source":"4767834710511010010112047","target":"476783477697110103117971031011154710511010010112047"},{"source":"47678347761051101171204710511010010112047","target":"8310111611610511010332691201161011141109710832771111101051161111143266114105103104116110101115115"},{"source":"47678347761051101171204710511010010112047","target":"77105115991011081089711010111111711532761051101171203266105116115"},{"source":"4767834710511010010112047","target":"47678347761051101171204710511010010112047"},{"source":"47678347761051101171204710511010010112047","target":"8773707332971101003265114991043276105110117120"},{"source":"4767834777105115994710511010010112047","target":"7697116101120328310411111411699117116115"},{"source":"4767834777105115994710511010010112047","target":"77101114109971051003271114971121041153271117105100101"},{"source":"4767834777105115994710511010010112047","target":"83117981081051091013284105112115"},{"source":"4767834777105115994710511010010112047","target":"861051093284105112115"},{"source":"4767834710511010010112047","target":"4767834777105115994710511010010112047"},{"source":"4710511010010112047","target":"4767834710511010010112047"},{"source":"4710511010010112047","target":"671111021021011013284114971051101051101033277105110117116101115"},{"source":"4710511010010112047","target":"77101114109971051003273110116101103114971161051111103287105116104327410110712110810833"},{"source":"4710511010010112047","target":"8297112327310010197"},{"source":"4782101991051121011154710511010010112047","target":"671041059910710111032789797110"},{"source":"4782101991051121011154710511010010112047","target":"6810111011510132657032801141111161011051103280971109997107101115"},{"source":"4782101991051121011154710511010010112047","target":"7210197108116104121328097100328410497105"},{"source":"671041059910710111032789797110","target":"789797110"},{"source":"4782101991051121011154710511010010112047","target":"789797110"},{"source":"4782101991051121011154710511010010112047","target":"8311297110105115104327697109983297110100328397102102114111110328210599101"},{"source":"4782101991051121011154710511010010112047","target":"841011141051219710710532839711799101"},{"source":"4710511010010112047","target":"4782101991051121011154710511010010112047"}],"nodes":[{"id":"6510097109391153279112116105109105115101114","path":"/note/CS/AI/Adams%20Optimiser","label":"Adam's Optimiser"},{"id":"6697121101115105971103278101116119111114107115","path":"/note/CS/AI/Bayesian%20Networks","label":"Bayesian Networks"},{"id":"4767834765734710511010010112047","path":"/note/CS/AI/index","label":"/CS/AI/index/"},{"id":"7010511410198971151013266105116115323911039326611198115","path":"/note/CS/FullStack/Firebase/Firebase","label":"Firebase Bits 'n' Bobs"},{"id":"4767834770117108108831169799107477010511410198971151014710511010010112047","path":"/note/CS/FullStack/Firebase/index","label":"/CS/FullStack/Firebase/index/"},{"id":"788677329711010032781111001017483","path":"/note/CS/FullStack/NVM%20and%20NodeJS","label":"NVM and NodeJS"},{"id":"841211121018399114105112116","path":"/note/CS/FullStack/TypeScript","label":"TypeScript"},{"id":"47678347701171081088311697991074710511010010112047","path":"/note/CS/FullStack/index","label":"/CS/FullStack/index/"},{"id":"821179812132971101003274101107121108108","path":"/note/CS/Languages/Ruby","label":"Ruby and Jekyll"},{"id":"476783477697110103117971031011154710511010010112047","path":"/note/CS/Languages/index","label":"/CS/Languages/index/"},{"id":"8310111611610511010332691201161011141109710832771111101051161111143266114105103104116110101115115","path":"/note/CS/Linux/Dim%20Brightness","label":"Setting External Monitor Brightness"},{"id":"77105115991011081089711010111111711532761051101171203266105116115","path":"/note/CS/Linux/General","label":"Miscellaneous Linux Bits"},{"id":"47678347761051101171204710511010010112047","path":"/note/CS/Linux/index","label":"/CS/Linux/index/"},{"id":"8773707332971101003265114991043276105110117120","path":"/note/CS/Linux/wifi","label":"WIFI and Arch Linux"},{"id":"7697116101120328310411111411699117116115","path":"/note/CS/Misc/Latex","label":"Latex Shortcuts"},{"id":"77101114109971051003271114971121041153271117105100101","path":"/note/CS/Misc/Mermaid","label":"Mermaid Graphs Guide"},{"id":"83117981081051091013284105112115","path":"/note/CS/Misc/Sublime%20Text","label":"Sublime Tips"},{"id":"861051093284105112115","path":"/note/CS/Misc/VIM","label":"Vim Tips"},{"id":"4767834777105115994710511010010112047","path":"/note/CS/Misc/index","label":"/CS/Misc/index/"},{"id":"4767834710511010010112047","path":"/note/CS/index","label":"/CS/index/"},{"id":"671111021021011013284114971051101051101033277105110117116101115","path":"/note/Coffee","label":"Coffee Training Minutes"},{"id":"77101114109971051003273110116101103114971161051111103287105116104327410110712110810833","path":"/note/Mermaid-Jekyll","label":"Mermaid Integration With Jekyll!"},{"id":"8297112327310010197","path":"/note/Rap","label":"Rap Idea"},{"id":"671041059910710111032789797110","path":"/note/Recipes/Chicken%20Naan","label":"Chicken Naan"},{"id":"6810111011510132657032801141111161011051103280971109997107101115","path":"/note/Recipes/Dense%20af%20Protien%20Pancakes","label":"Dense AF Protein Pancakes"},{"id":"7210197108116104121328097100328410497105","path":"/note/Recipes/Healthy%20Pad%20Thai","label":"Healthy Pad Thai"},{"id":"789797110","path":"/note/Recipes/Naan","label":"Naan"},{"id":"8311297110105115104327697109983297110100328397102102114111110328210599101","path":"/note/Recipes/Spanish%20Lamb%20and%20Saffron%20Rice","label":"Spanish Lamb and Saffron Rice"},{"id":"841011141051219710710532839711799101","path":"/note/Recipes/Teriyaki%20Sauce","label":"Teriyaki Sauce"},{"id":"4782101991051121011154710511010010112047","path":"/note/Recipes/index","label":"/Recipes/index/"},{"id":"4710511010010112047","path":"/note/index","label":"/index/"}]}
-
-  const svg = d3.select(".node-svg");
-
-  // Specify the color scale.
-  const color = d3.scaleOrdinal(d3.schemeDark2);
-
-  // The force simulation mutates links and nodes, so create a copy
-  // so that re-evaluating this cell produces the same result.
-  const links = data.edges.map(d => ({...d}));
-  const nodes = data.nodes.map(d => ({...d}));
 
   const nodeSize = {};
 
@@ -98,7 +77,6 @@
   };
 
   const onClick = (d) => {
-    d.preventDefault();
     window.location = d.target.__data__.path;
   };
 
@@ -154,13 +132,13 @@
       text.attr("class", "");
       link.attr("stroke-width", STROKE);
       mouseOutTimeout = null;
-    }, 400);
+    }, 300);
   };
 
   // Reheat the simulation when drag starts, and fix the subject position.
   function dragstarted(event) {
     dragging = true;
-    if (!event.active) simulation.alphaTarget(0.3).restart();
+    if (!event.active) simulation.alphaTarget(0.4).restart();
     event.subject.fx = event.subject.x;
     event.subject.fy = event.subject.y;
   }
@@ -221,47 +199,27 @@
     return true;
   };
 
-  updateNodeSize();
+  const data = {% include notes_graph.json %}
 
-  let zoomLevel = 1;
+  // Specify the color scale.
+  const color = d3.scaleOrdinal(d3.schemeDark2);
 
-  const link = svg.append("g")
-    .attr("class", "links")
-    .attr("stroke", "#999")
-    .attr("stroke-opacity", 0.7)
-    .selectAll(".links")
-    .data(links, (d) => `${d.source.id}-${d.target.id}`)
-    .join("line")
-    .attr("stroke-width", d => Math.sqrt(d.value));
+  // The force simulation mutates links and nodes, so create a copy
+  // so that re-evaluating this cell produces the same result.
+  const links = data.edges.map(d => ({...d}));
+  const nodes = data.nodes.map(d => ({...d}));
 
-  const node = svg.append("g")
-      .attr("class", "nodes")
-    .selectAll(".nodes")
-    .data(nodes, (d) => d.id)
-    .join("circle")
-      .attr("r", 5)
-      .attr("fill", d => color(d.group))
-      .attr("cx", width / 2)
-      .attr("cy", height / 2)
-    .attr("r", (d) => {
-      return nodeSize[d.id];
-    })
-    .attr("active", (d) => isCurrentPath(d.path) ? true : null)
-    .on("click", onClick)
-    .on("mouseover", onMouseover)
-    .on("mouseout", onMouseout);
+  const graphWrapper = document.getElementById('node-graph')
+  const element = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  element.classList = ["node-svg"];
+  element.setAttribute("width", graphWrapper.getBoundingClientRect().width);
+  element.setAttribute("height", window.innerHeight * 0.8);
+  graphWrapper.appendChild(element);
 
-  const text = svg.append("g")
-    .attr("class", "text")
-    .selectAll(".text")
-    .data(nodes, (d) => d.label)
-    .join("text")
-    .text((d) => shorten(d.label.replace(/_*/g, ""), MAX_LABEL_LENGTH))
-    .attr("font-size", `${FONT_SIZE}px`)
-    .attr("text-anchor", "middle")
-    .attr("alignment-baseline", "central")
-    .attr("active", (d) => isCurrentPath(d.path) ? true : null)
-    .on("click", onClick);
+  const svg = d3.select(".node-svg");
+  const g = svg.append("g");
+  const width = Number(svg.attr("width"));
+  const height = Number(svg.attr("height"));
 
   // Create a simulation with several forces.
   const simulation = d3.forceSimulation(nodes)
@@ -277,15 +235,19 @@
     .force("center", d3.forceCenter(width / 2, height / 2).strength(0.01))
     .force("collision", d3.forceCollide().radius(50).strength(0.1));
 
-  function shorten(str, maxLen, separator = ' ') {
-    if (str.length <= maxLen) return str;
-    return str.substr(0, str.lastIndexOf(separator, maxLen)) + '...';
-  }
-  // Add a drag behavior.
-  node.call(d3.drag()
-    .on("start", dragstarted)
-    .on("drag", dragged)
-    .on("end", dragended));
+  let link = g.append("g")
+    .attr("class", "links")
+    .attr("stroke", "#999")
+    .attr("stroke-opacity", 0.7)
+    .selectAll(".links");
+
+  let node = g.append("g")
+    .attr("class", "nodes")
+    .selectAll(".nodes");
+
+  let text = g.append("g")
+    .attr("class", "text")
+    .selectAll(".text");
 
   // Set the position attributes of links and nodes each time the simulation ticks.
   const tick = () => {
@@ -301,12 +263,82 @@
       .attr("x2", d => d.target.x)
       .attr("y2", d => d.target.y);
   }
+  let transform;
+
+  const zoom = d3.zoom().on("zoom", e => {
+    g.attr("transform", (transform = e.transform)); // Using transform.toString()
+
+  });
+
+  svg.call(zoom)
+  .call(zoom.transform, d3.zoomIdentity)
+    .node();
+
+
+  const restart = () => {
+    simulation.stop();
+    updateNodeSize();
+    node = node.data(nodes, (d) => d.id);
+    node.exit().remove();
+    node = node
+      .enter()
+      .append("circle")
+        .attr("r", 5)
+        .attr("fill", d => color(d.group))
+        .attr("cx", width / 2)
+        .attr("cy", height / 2)
+      .attr("r", (d) => {
+        return nodeSize[d.id];
+      })
+      .attr("active", (d) => isCurrentPath(d.path) ? true : null)
+      .on("click", onClick)
+      .on("mouseover", onMouseover)
+      .on("mouseout", onMouseout)
+      .call(d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended))
+      .merge(node);
+
+    link = link.data(links, (d) => `${d.source.id}-${d.target.id}`);
+    link.exit().remove();
+    link = link.enter()
+      .append("line")
+      .attr("stroke-width", d => Math.sqrt(d.value))
+      .merge(link);
+
+    text = text.data(nodes, (d) => d.label);
+    text.exit().remove();
+    text = text.enter()
+      .append("text")
+      .text((d) => shorten(d.label.replace(/_*/g, ""), MAX_LABEL_LENGTH))
+      .attr("font-size", `${FONT_SIZE}px`)
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "central")
+      .on("click", onClick)
+      .merge(text);
+
+    node.attr("active", (d) => isCurrentPath(d.path) ? true : null);
+    text.attr("active", (d) => isCurrentPath(d.path) ? true : null);
+
+    simulation.nodes(nodes);
+    simulation.force("link").links(links);
+    simulation.alpha(1).restart();
+  }
+
+  restart();
 
   for (let i = 0; i < 300; i++) {
     simulation.tick();
   }
 
   simulation.on("tick", tick);
+
+
+  function shorten(str, maxLen, separator = ' ') {
+    if (str.length <= maxLen) return str;
+    return str.substr(0, str.lastIndexOf(separator, maxLen)) + '...';
+  }
 
   function isCurrentPath(notePath) {
     return window.location.pathname.includes(notePath)

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 class BidirectionalLinksGenerator < Jekyll::Generator
   safe true
+
   def generate(site)
-    return
     graph_nodes = []
     graph_edges = []
 
@@ -13,6 +13,7 @@ class BidirectionalLinksGenerator < Jekyll::Generator
 
     link_extension = !!site.config["use_html_extension"] ? '.html' : ''
 
+    Jekyll.logger.info("[BiDirectionalLinks]: Creating internal links")
     # Convert all Wiki/Roam-style double-bracket link syntax to plain HTML
     # anchor tag elements (<a>) with "internal-link" CSS class
     all_docs.each do |current_note|
@@ -75,7 +76,7 @@ class BidirectionalLinksGenerator < Jekyll::Generator
         HTML
       )
     end
-
+    Jekyll.logger.info("[BiDirectionalLinks]: Finding backlinks")
     # Identify note backlinks and add them to each note
     all_notes.each do |current_note|
       # Nodes: Jekyll
@@ -98,14 +99,16 @@ class BidirectionalLinksGenerator < Jekyll::Generator
         graph_edges << {
           source: note_id_from_note(n),
           target: note_id_from_note(current_note),
+          folder: (n.url.include?("/index.html") || current_note.url.include?("/index.html"))
         }
       end
     end
-
+    Jekyll.logger.info("[BiDirectionalLinks]: Writing _includes/notes_graph.json")
     File.write('_includes/notes_graph.json', JSON.dump({
       edges: graph_edges,
       nodes: graph_nodes,
     }))
+    Jekyll.logger.info("[BiDirectionalLinks]: Finished")
   end
 
   def note_id_from_note(note)
