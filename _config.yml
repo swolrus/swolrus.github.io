@@ -32,7 +32,6 @@ sass:
 collections:
   notes:
     output: true
-    permalink: /notes/:path.html
 
 kramdown:
   syntax_highlighter: rouge
@@ -47,6 +46,7 @@ defaults:
       type: "notes"
     values:
       layout: "note"
+      permalink: /notes/:path.html
 
 
 
