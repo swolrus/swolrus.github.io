@@ -274,6 +274,12 @@
   .call(zoom.transform, d3.zoomIdentity)
     .node();
 
+  const reportWindowSize = () => {
+    element.setAttribute("width", window.innerWidth);
+    element.setAttribute("height", window.innerHeight);
+  };
+
+  window.onresize = reportWindowSize;
 
   const restart = () => {
     simulation.stop();
