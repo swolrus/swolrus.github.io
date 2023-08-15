@@ -6,7 +6,7 @@ index: true
 
   <h3>Directories</h3>
   
-  <a href='/notes/CS/FullStack.html'>..</a>
+  <a href='/notes/CS/FullStack/index.html'>..</a>
   
 
 

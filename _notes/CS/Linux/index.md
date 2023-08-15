@@ -6,7 +6,7 @@ index: true
 
   <h3>Directories</h3>
   
-  <a href='/notes/CS.html'>..</a>
+  <a href='/notes/CS/index.html'>..</a>
   
 
 

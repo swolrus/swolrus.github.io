@@ -3,7 +3,7 @@ require 'uri'
 require 'erb'
 
 Jekyll::Hooks.register :site, :after_init do |site|
-  indexer = IndexGenerator.new(true)
+  indexer = IndexGenerator.new()
   indexer.index(site)
 end
 
@@ -60,13 +60,13 @@ class IndexGenerator
     Dir.foreach(dirpath_full) do |entry|
       next if entry == '.' || entry == '..' || entry == 'index.md' || entry.capitalize.include?("private")
 
+      entry_basename = File.basename(entry, ".md")
       # Create paths both from source and relative to _notes
-      entry_full_path =  File.join(dirpath_full, File.basename(entry, ".md"))
-      entry_relative_path = File.join(dirpath, File.basename(entry, ".md"))
+      entry_relative_path = File.join(dirpath, entry_basename)
       permalink = @parser.escape("/#{@collection}#{entry_relative_path}")
 
       # Process Dirs
-      if File.directory?(entry_full_path)
+      if File.directory?(File.join(dirpath_full, entry_basename))
         add_link(links_dirs, permalink + "/index", entry)
         create_index(entry_relative_path)
         next # if entry was a dir it can't be a file
