@@ -1,16 +1,21 @@
 ---
 layout: note
-title: /CS/Linux/
-
+title: /CS/Linux
 index: true
 ---
 <h3>Directories</h3>
 
-<h3>Files</h3>
+  
+  <a href='/notes/CS/Linux.html'>..</a>
+  
 
-<a href='/notes/CS/Linux/Dim%20Brightness.html'>/CS/Linux/Dim Brightness.md</a>
 
-<a href='/notes/CS/Linux/General.html'>/CS/Linux/General.md</a>
-
-<a href='/notes/CS/Linux/wifi.html'>/CS/Linux/wifi.md</a>
+  <h3>Files</h3>
+  
+  <a href='/notes/CS/Linux/Dim%20Brightness.html'>Dim Brightness.md</a>
+  
+  <a href='/notes/CS/Linux/General.html'>General.md</a>
+  
+  <a href='/notes/CS/Linux/wifi.html'>wifi.md</a>
+  
 

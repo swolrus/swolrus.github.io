@@ -1,12 +1,17 @@
 ---
 layout: note
-title: /CS/FullStack/Firebase/
-
+title: /CS/FullStack/Firebase
 index: true
 ---
 <h3>Directories</h3>
 
-<h3>Files</h3>
+  
+  <a href='/notes/CS/FullStack/Firebase.html'>..</a>
+  
 
-<a href='/notes/CS/FullStack/Firebase/Firebase.html'>/CS/FullStack/Firebase/Firebase.md</a>
+
+  <h3>Files</h3>
+  
+  <a href='/notes/CS/FullStack/Firebase/Firebase.html'>Firebase.md</a>
+  
 

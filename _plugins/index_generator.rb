@@ -2,98 +2,105 @@
 require 'uri'
 require 'erb'
 
-class IndexGenerator < Jekyll::Generator
-  safe true
-  priority :highest
+Jekyll::Hooks.register :site, :after_init do |site|
+  indexer = IndexGenerator.new(true)
+  indexer.index(site)
+end
+
+class IndexGenerator
+  def initialize(debug=nil)
+    @parser = URI::Parser.new
+    # Silence output of currently processing dir/file
+    @verbose_debug = debug || false
+    @collection = "notes"
+  end
+
+  def debug(message)
+    if @verbose_debug == true
+      Jekyll.logger.info("[IndexGenerator] #{message}")
+    end
+  end
 
   # We only want to run this once. If not it will loop
   # Thanks to code from: stackoverflow.com/questions/68864482/call-jekyll-generator-plugin-only-on-the-first-run-and-not-on-regenerate
-  def generate(site)
-    # Check if already ran and update run count
-    if (!defined?@render_count)
-      @render_count = 1
-    end
-    if @render_count < 1
-      Jekyll.logger.info("[IndexGenerator] Already generated once, restart to refresh index pages.")
-      return
-    end
-
-    @parser = URI::Parser.new
-
-    # Silence output of currently processing dir/file
-    @verbos_debug = false
-
+  def index(site, collection=nil)
+    debug("Generating indexes.")
     # Functional code
-    start_path = File.join(site.source, "_notes/")
-    create_index(start_path, site)
+    collection ||= @collection
+    @collection = @collection
+    @source = "#{site.source}/_#{collection}"
+    create_index("/")
 
     # Log completion and lock from running again
-    Jekyll.logger.info("[IndexGenerator] Generation of indexes complete.")
-    @render_count = @render_count - 1
+    debug("Generation of indexes complete.")
   end
 
-  def add_link(link_array, link_rel_path, suffix)
-    permalink = @parser.escape("/notes/#{link_rel_path}")
-    if suffix == "/"
-      permalink = permalink + "/index"
-    end
+  def add_link(link_array, permalink, title)
     #Jekyll.logger.info(permalink)
-    link = "<a href='#{permalink}.html'>/#{link_rel_path}#{suffix}</a>"
+    link = "<a href='#{permalink}.html'>#{title}</a>"
     link_array << link
   end
 
-  def create_index(directory, site)
-    Jekyll.logger.info("[IndexGenerator] Indexing dir: #{directory}")
+  def create_index(dirpath)
+    return "" if dirpath.capitalize.include?("private")
+
+    debug("Indexing dir: #{dirpath}")
+    dirpath_full = File.join(@source, dirpath)
+
     # Initialize an array to store the links
     links_dirs = []
-
     links_files = []
 
-    dirsEndedFlag = false
+    # Add an up link if not the root
+    if dirpath != "/"
+      add_link(links_dirs, "/#{@collection}#{dirpath.gsub(/\/[\w,\s]*\/\z/, "/index")}", "..")
+    end
+
     # Process each entry in the directory
-    Dir.foreach(directory) do |entry|
-    next if entry == '.' || entry == '..' || entry == 'index.md' || entry == 'Private'
-      # New fullpath
-      entry_full_path =  File.join(directory, File.basename(entry, ".md"))
-      entry_relative_path = Pathname.new(entry_full_path).relative_path_from(Pathname.new(site.source + "/_notes"))
+    Dir.foreach(dirpath_full) do |entry|
+      next if entry == '.' || entry == '..' || entry == 'index.md' || entry.capitalize.include?("private")
+
+      # Create paths both from source and relative to _notes
+      entry_full_path =  File.join(dirpath_full, File.basename(entry, ".md"))
+      entry_relative_path = File.join(dirpath, File.basename(entry, ".md"))
+      permalink = @parser.escape("/#{@collection}#{entry_relative_path}")
+
+      # Process Dirs
       if File.directory?(entry_full_path)
-        # add entry to dir array
-        add_link(links_dirs, entry_relative_path, "/")
-        create_index(entry_full_path, site)
+        add_link(links_dirs, permalink + "/index", entry)
+        create_index(entry_relative_path)
         next # if entry was a dir it can't be a file
       end
-      # Add the link to the file array
-      add_link(links_files, entry_relative_path, ".md")
+
+      # Process Files
+      add_link(links_files, permalink, entry)
     end
 
-  # Generate the index.html content using the template
-    relative_path = "#{Pathname.new(directory).relative_path_from(Pathname.new(site.source + "/_notes"))}/"
-    if relative_path == './'
-      relative_path = ''
-    end
-
+    # Template for our index.md files based on the links arrays
     index_erb = <<~ERB
     ---
     layout: note
-    title: /#{relative_path}
-
+    title: #{dirpath}
     index: true
     ---
-    <h3>Directories</h3>
-    <% links_dirs.each do |link| %>
-    <%= link %>
+    <% if links_dirs.length() > 0 %>
+      <h3>Directories</h3>
+      <% links_dirs.each do |link| %>
+      <%= link %>
+      <% end %>
     <% end %>
-    <h3>Files</h3>
-    <% links_files.each do |link| %>
-    <%= link %>
+    <% if links_files.length() > 0 %>
+      <h3>Files</h3>
+      <% links_files.each do |link| %>
+      <%= link %>
+      <% end %>
     <% end %>
     ERB
-
-    index_path = "#{directory}/index.md"
-
     # Render the ERB template
     index_contents = ERB.new(index_erb).result(binding)
 
+    # New files path
+    index_path = "#{dirpath_full}/index.md"
     # Create a new Jekyll page for the index, we need w+ as to overwrite
     File.open(index_path, "w+") do |file|
       file.puts(index_contents)
