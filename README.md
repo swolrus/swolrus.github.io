@@ -60,7 +60,7 @@ This script allows for the quick search through all notes including their conten
 
 A custom plugin has been written to add an index.md to each directory under the _notes collection path. These files will contain a link to each file/dir within the same directory. As the plugin has the setting: `priority :highest`, it generates before the bi-directional links meaning the connections are included both in backlinks and in the nodes graph.
 
-This plugin relys on some settings in config.yml namely the collections and defaults (included below). The permalink is the most important as it is the syntax used when generating the backlinks and the indexes won't create edges without the format matching what it expects.
+This plugin relys on some settings in config.yml namely the collections output template/permalink. The permalink is the most important as it is the syntax used when generating the backlinks and the indexes won't create edges without the format matching what it expects.
 
 ```yaml
 # ./_config.yml
