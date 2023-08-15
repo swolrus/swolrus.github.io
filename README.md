@@ -49,7 +49,7 @@ By selecting all elements with this class and changing it to be the class `.merm
 ### Search
 
 > See the script in
->   - `./_pages/home.html`
+>   - `./_pages/search.html`
 
 This script allows for the quick search through all notes including their content. It utelises a hidden element including the note and some regex to conditionally hide or show elements. It also manages the search function via an interval to interrupt and ensure that only one search is running even while the search string is changing.
 
