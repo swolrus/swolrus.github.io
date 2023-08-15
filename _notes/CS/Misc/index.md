@@ -3,10 +3,10 @@ layout: note
 title: /CS/Misc
 index: true
 ---
-<h3>Directories</h3>
 
+  <h3>Directories</h3>
   
-  <a href='/notes/CS/Misc.html'>..</a>
+  <a href='/notes/CS.html'>..</a>
   
 
 

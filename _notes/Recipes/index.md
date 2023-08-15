@@ -3,10 +3,10 @@ layout: note
 title: /Recipes
 index: true
 ---
-<h3>Directories</h3>
 
+  <h3>Directories</h3>
   
-  <a href='/notes/Recipes.html'>..</a>
+  <a href='/notes.html'>..</a>
   
 
 

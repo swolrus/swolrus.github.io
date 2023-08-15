@@ -53,7 +53,7 @@ class IndexGenerator
 
     # Add an up link if not the root
     if dirpath != "/"
-      add_link(links_dirs, "/#{@collection}#{dirpath.gsub(/\/[\w,\s]*\/\z/, "/index")}", "..")
+      add_link(links_dirs, "/#{@collection}#{dirpath.gsub(/\/[\w,\s]*[^\/]\z/, "/index")}", "..")
     end
 
     # Process each entry in the directory

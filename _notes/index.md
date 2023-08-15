@@ -3,8 +3,8 @@ layout: note
 title: /
 index: true
 ---
-<h3>Directories</h3>
 
+  <h3>Directories</h3>
   
   <a href='/notes/CS/index.html'>CS</a>
   

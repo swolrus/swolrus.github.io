@@ -3,10 +3,10 @@ layout: note
 title: /CS/FullStack
 index: true
 ---
-<h3>Directories</h3>
 
+  <h3>Directories</h3>
   
-  <a href='/notes/CS/FullStack.html'>..</a>
+  <a href='/notes/CS.html'>..</a>
   
   <a href='/notes/CS/FullStack/Firebase/index.html'>Firebase</a>
   
