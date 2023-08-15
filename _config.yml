@@ -4,8 +4,8 @@ exclude:             ['_includes/notes_graph.json', '_notes/Private/']
 # You may need to change the base URL depending on your deploy configuration.
 # Specifically, when using GitHub Pages, the baseurl should point to where GitHub
 # Pages deploys your repository (which is usually the repository name).
-#baseurl:             'https://swolrus.github.io'
-baseurl:                ''
+baseurl:             'https://swolrus.github.io'
+#baseurl:                ''
 # If you are using a host that cannot resolve URLs that do
 # not end with .html (such as Neocities), set "his to 'true'.
 use_html_extension:  false
@@ -47,23 +47,3 @@ defaults:
       type: "notes"
     values:
       layout: "note"
-
-
-
-      ## Built-in Variables
-
-      ## In addition to the variables provided in the configuration file, there are built-in variables that can be used in the scope comparison.
-
-      ## | Variable | Description |
-      ## | --- | --- |
-      ## | `page.regularPath` | The path of the page relative to the `content` directory, with the extension removed. This is equal to the `page.path` without the `page.ext` |
-      ## | `page.directory` | The directory portion of the `page.path` |
-      ## | `page.base` | The basename of the `page.path` |
-      ## | `page.stem` | The stem of the `page.path` (the filename without the extension) |
-      ## | `page.ext` | The file extension of the `page.path` |
-
-      ## Examples
-
-      ### Basic
-
-      ## This example shows how to set a default layout for all files in `content/notes` and `content/articles` directories.
