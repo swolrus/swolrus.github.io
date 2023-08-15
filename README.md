@@ -5,14 +5,14 @@ This project is built to serve a selection of my obsidian notes and uses a GitHu
 
 ## Features
 
-### D3.Force
+### D3.Force()
 
 > See:
 >   - `./_includes/notes_graph.html`
 >   - `./_layouts/note.html`
 >   - `./_pages/graph.md`
 
-The map now uses a simulation for the nodes meaning that they are draggable. Additionally the wrapper uses a unique tag as not to be modified by mermaid and katex maths.
+The map now uses a live simulation for the nodes meaning that they are draggable. Additionally the wrapper uses a unique tag as not to be modified by mermaid and katex maths.
 
 ### Katex Maths
 
@@ -31,9 +31,10 @@ The folowing file is all that is required to generate mermaid charts for the sit
 
 By selecting all elements with this class and changing it to be the class `.mermaid` when we import the mermaid module it will autmatically process them.
 
-`./_includes/mermaid.html`
 
 ```html
+<!-- ./_includes/mermaid.html -->
+
 <script type="text/javascript">
   let mermaidNodes = document.querySelectorAll('code.language-mermaid');
   for (let mermaidNode of mermaidNodes) {
@@ -51,6 +52,37 @@ By selecting all elements with this class and changing it to be the class `.merm
 >   - `./_pages/home.html`
 
 This script allows for the quick search through all notes including their content. It utelises a hidden element including the note and some regex to conditionally hide or show elements. It also manages the search function via an interval to interrupt and ensure that only one search is running even while the search string is changing.
+
+### Index Generator
+
+> See:
+>   - `./_plugins/index_generator.rb`
+
+A custom plugin has been written to add an index.md to each directory under the _notes collection path. These files will contain a link to each file/dir within the same directory. As the plugin has the setting: `priority :highest`, it generates before the bi-directional links meaning the connections are included both in backlinks and in the nodes graph.
+
+This plugin relys on some settings in config.yml namely the collections and defaults (included below). The permalink is the most important as it is the syntax used when generating the backlinks and the indexes won't create edges without the format matching what it expects.
+
+```yaml
+# ./_config.yml
+...
+collections:
+  notes:
+    output: true
+    permalink: /notes/:path.html
+...
+...
+defaults:
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "note"
+...
+```
+
+### Sass Conversion
+
+The garden also now uses sass to simplify our css. The file `./_sass/main.scss` is what is included and this means you only have to work within the `_sass` directory to setup stylesheets.
 
 ## Exerpt From Base Repo
 
